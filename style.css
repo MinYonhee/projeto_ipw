@@ -8,7 +8,7 @@ body {
     margin: 0;
 }
 
-#login-container, #content {
+#login-container, #register-container, #content {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
@@ -35,4 +35,8 @@ button:hover {
 
 #error-message {
     color: red;
+}
+
+#success-message {
+    color: green;
 }

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="register-container">
+        <h2>Cadastro</h2>
+        <form id="registerForm">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Cadastrar</button>
+        </form>
+        <p id="success-message"></p>
+        <p id="error-message"></p>
+        <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            register(username, password);
+        });
+
+        function register(username, password) {
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || {};
+            if (storedUsers[username]) {
+                document.getElementById('error-message').innerText = 'Usuário já existe';
+                document.getElementById('success-message').innerText = '';
+            } else {
+                storedUsers[username] = password;
+                localStorage.setItem('users', JSON.stringify(storedUsers));
+                document.getElementById('success-message').innerText = 'Usuário cadastrado com sucesso!';
+                document.getElementById('error-message').innerText = '';
+            }
+        }
+    </script>
+</body>
+</html>

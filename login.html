@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="login-container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <label for="username">Usuário:</label>
+            <input type="text" id="username" name="username" required>
+            <br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password" required>
+            <br>
+            <button type="submit">Entrar</button>
+        </form>
+        <p id="error-message"></p>
+    </div>
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            login(username, password);
+        });
+
+        function login(username, password) {
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || {};
+            if (storedUsers[username] && storedUsers[username] === password) {
+                localStorage.setItem('loggedUser', username);
+                window.location.href = 'index.html';
+            } else {
+                document.getElementById('error-message').innerText = 'Usuário ou senha inválidos';
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            if (!localStorage.getItem('users')) {
+                const defaultUsers = {
+                    'usuario1': 'senha1',
+                    'usuario2': 'senha2'
+                };
+                localStorage.setItem('users', JSON.stringify(defaultUsers));
+            }
+        });
+    </script>
+</body>
+</html>

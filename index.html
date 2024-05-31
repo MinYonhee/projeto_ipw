@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MeIAjuda</title>
+    <title>Home</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    
+    <div id="content">
+        <h1>Bem-vindo</h1>
+        <p id="welcomeMessage"></p>
+        <button onclick="logout()">Logout</button>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const username = localStorage.getItem('loggedUser');
+            if (!username) {
+                window.location.href = 'login.html';
+            } else {
+                document.getElementById('welcomeMessage').innerText = `Bem-vindo, ${username}!`;
+            }
+        });
+
+        function logout() {
+            localStorage.removeItem('loggedUser');
+            window.location.href = 'login.html';
+        }
+    </script>
 </body>
 </html>

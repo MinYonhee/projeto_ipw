@@ -12,7 +12,8 @@ body {
 }
 
 #login-container, #register-container, #content {
-    background-color: #fff;
+    background-color: #90D8C0;
+    color: white;
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -20,6 +21,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 14px;
 }
 
 input {
@@ -36,7 +38,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #4B0082;
 }
 
 #error-message {

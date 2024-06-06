@@ -21,7 +21,7 @@ body {
     font-family: "Poppins", sans-serif;
     font-weight: 400;
     font-style: normal;
-    font-size: 14px;
+    font-size: 16px;
     align-items: right;
 }
 
@@ -56,7 +56,22 @@ button:hover {
     max-width: 200px;
 }
 
+.marca {
+    display:block;
+    margin: 2px auto 5px;
+    max-width: 100x;
+    width: 30%;
+}
+
+
 .campos {
-    align-items: right;
-    
+    text-align: center;
+   
+}
+
+.campos label,
+.campos input {
+    display: block;
+    margin: 0 auto 10px;
+    margin-bottom: 5px;
 }

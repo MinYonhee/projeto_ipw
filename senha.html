@@ -26,38 +26,22 @@
     </div>
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const username = document.getElementById('username').value;
-            const birthdate = document.getElementById('birthdate').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            // Verifica se a data de nascimento é válida
-            if (isValidDate(birthdate)) {
-                register(username, birthdate, email, password, confirmPassword);
-            } else {
-                document.getElementById('error-message').innerText = 'Data de nascimento inválida';
-            }
-        });
+    event.preventDefault();
+    const email = document.getElementById('email').value;
+    const confirmEmail = document.getElementById('confirmEmail').value;
 
-        function register(username, birthdate, email, password, confirmPassword) {
-            const storedUsers = JSON.parse(localStorage.getItem('users')) || {};
-            if (storedUsers[username]) {
-                document.getElementById('error-message').innerText = 'Usuário já existe';
-                document.getElementById('success-message').innerText = '';
-            } else if (password !== confirmPassword) {
-                document.getElementById('error-message').innerText = 'As senhas não coincidem';
-                document.getElementById('success-message').innerText = '';
-            } else {
-                storedUsers[username] = { birthdate, email, password };
-                localStorage.setItem('users', JSON.stringify(storedUsers));
-                document.getElementById('success-message').innerText = 'Usuário cadastrado com sucesso!';
-                document.getElementById('error-message').innerText = '';
-            }
-        }
+    if (email === confirmEmail) {
+        sendRecoveryLink(email);
+    } else {
+        document.getElementById('error-message').innerText = 'Os emails não coincidem';
+        document.getElementById('success-message').innerText = '';
+    }
+});
 
-        function isValidDate(dateString) {
-            
+function sendRecoveryLink(email) {
+    document.getElementById('success-message').innerText = 'Link de recuperação enviado com sucesso!';
+    document.getElementById('error-message').innerText = '';
+}
     </script>
 </body>
 </html>

@@ -11,21 +11,16 @@
         <h2>Cadastro</h2>
         <form id="registerForm">
             <div class="campos">
-            <label for="username">Nome completo:</label>
-            <input type="text" id="name" name="name" required placeholder="Nome completo" style="border: 1px solid #8A2BE2; padding: 8px; width: 140px; border-radius: 20px;">
-            
-            <label for="birthdate">Data de nascimento:</label>
-            <input type="date" id="birthdate" name="birthdate" required placeholder="Digite sua data de nascimento" style="border: 1px solid #8A2BE2; padding: 8px; width: 150px; border-radius: 20px;">
-           
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required style="border: 1px solid #8A2BE2; padding: 8px; width: 150px; border-radius: 20px;">
-
-            <label for="password">Senha:</label>
-            <input type="password" id="password" name="password" required style="border: 1px solid #8A2BE2; padding: 8px; width: 150px; border-radius: 20px;">
-            
-            <label for="confirmPassword">Confirme sua senha:</label>
-            <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirme sua senha"style="border: 1px solid #8A2BE2; padding: 8px; width: 150px; border-radius: 20px;">
-        </div>
+                <input type="text" id="username" name="username" required placeholder="Nome completo" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+                <br>
+                <input type="text" id="birthdate" name="birthdate" required placeholder="Data de nascimento" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+                <br>
+                <input type="email" id="email" name="email" required placeholder="Email" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+                <br>
+                <input type="password" id="password" name="password" required placeholder="Senha" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+                <br>
+                <input type="password" id="confirmPassword" name="confirmPassword" required placeholder="Confirme sua senha" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+            </div>
             <br>
             <button type="submit">Cadastrar</button>
         </form>
@@ -41,7 +36,12 @@
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
-            register(username, birthdate, email, password, confirmPassword);
+            // Verifica se a data de nascimento é válida
+            if (isValidDate(birthdate)) {
+                register(username, birthdate, email, password, confirmPassword);
+            } else {
+                document.getElementById('error-message').innerText = 'Data de nascimento inválida';
+            }
         });
 
         function register(username, birthdate, email, password, confirmPassword) {
@@ -59,6 +59,9 @@
                 document.getElementById('error-message').innerText = '';
             }
         }
+
+        function isValidDate(dateString) {
+            
     </script>
 </body>
 </html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="register-container">
+        <img src="nome.png" alt="Nome do site" class="marca">
+        <h2>Recupere sua senha de acesso</h2>
+        <form id="registerForm">
+            <div class="campos">
+
+                <input type="email" id="email" name="email" required placeholder="Email" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+                <br>
+                <input type="email" id="email" name="email" required placeholder="Confirme seu email" style="border: 1px solid #8A2BE2; padding: 8px; width: 200px; border-radius: 20px;">
+            </div>
+            <br>
+            <button type="submit">Enviar link de recuperação</button>
+        </form>
+        <p id="success-message"></p>
+        <p id="error-message"></p>
+        <p>Já tem uma conta? <a href="login.html">Faça login aqui</a></p>
+    </div>
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const birthdate = document.getElementById('birthdate').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            // Verifica se a data de nascimento é válida
+            if (isValidDate(birthdate)) {
+                register(username, birthdate, email, password, confirmPassword);
+            } else {
+                document.getElementById('error-message').innerText = 'Data de nascimento inválida';
+            }
+        });
+
+        function register(username, birthdate, email, password, confirmPassword) {
+            const storedUsers = JSON.parse(localStorage.getItem('users')) || {};
+            if (storedUsers[username]) {
+                document.getElementById('error-message').innerText = 'Usuário já existe';
+                document.getElementById('success-message').innerText = '';
+            } else if (password !== confirmPassword) {
+                document.getElementById('error-message').innerText = 'As senhas não coincidem';
+                document.getElementById('success-message').innerText = '';
+            } else {
+                storedUsers[username] = { birthdate, email, password };
+                localStorage.setItem('users', JSON.stringify(storedUsers));
+                document.getElementById('success-message').innerText = 'Usuário cadastrado com sucesso!';
+                document.getElementById('error-message').innerText = '';
+            }
+        }
+
+        function isValidDate(dateString) {
+            
+    </script>
+</body>
+</html>
